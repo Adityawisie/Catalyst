@@ -11,7 +11,7 @@ const PAGE_HEIGHT = 5760;
 export default function Home() {
   return (
     <DesignCanvas height={PAGE_HEIGHT}>
-      <main className="w-[1920px]">
+      <main className="w-full lg:w-[1920px]">
         <Hero />
         <AboutSection />
         <Process />

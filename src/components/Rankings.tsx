@@ -32,79 +32,87 @@ export function Rankings() {
       bgVectorLeft={710}
       bgVectorOpacity={0.1}
     >
-      <h2 className="absolute top-[50px] left-[774px] w-[372px] text-center text-[90px] leading-none font-semibold text-catalyst-dark">
+      <h2 className="lg:absolute lg:top-[50px] lg:left-[774px] w-full lg:w-[372px] text-center text-5xl md:text-7xl lg:text-[90px] leading-none font-semibold text-catalyst-dark z-10">
         Rankings
       </h2>
 
-      <div className="absolute top-[283px] left-[300px] rounded-2xl border-[3px] border-catalyst-dark bg-catalyst-light shadow-xl z-10 overflow-hidden">
-        <div className="bg-catalyst-dark/5 px-5 py-4 border-b-[3px] border-catalyst-dark">
-          <p className="text-center text-[22px] leading-none font-bold text-catalyst-dark">
-            Month
-          </p>
-        </div>
-        <div className="p-3">
-          {months.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex items-center">
-              {row.map((month) => (
-                <div
-                  key={month}
-                  className={`rounded-xl px-5 py-4 text-center text-[20px] leading-none font-semibold transition-all duration-300 ${
-                    month === "JUL"
-                      ? "bg-catalyst-green text-catalyst-dark scale-110 shadow-md"
-                      : "text-catalyst-dark hover:bg-catalyst-dark/5"
-                  }`}
-                  style={{ minWidth: '80px' }}
-                >
-                  {month}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="absolute top-[283px] left-[773px] h-[317px] w-[5px] bg-catalyst-green shadow-[0_0_15px_rgba(30,215,96,0.3)] z-10" />
-
-      <div className="absolute top-[283px] left-[870px] w-[750px] rounded-2xl border-[3px] border-catalyst-dark bg-catalyst-light shadow-xl z-10 overflow-hidden">
-        <div className="flex bg-catalyst-dark/5 border-b-[3px] border-catalyst-dark">
-          {columns.map((col) => (
-            <div key={col.header} className="flex-1 px-4 py-4 text-center border-r-[3px] border-catalyst-dark last:border-r-0">
-              <p className="text-[22px] leading-none font-bold text-catalyst-dark">
-                {col.header}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div>
-          {rankings.map((row, i) => (
-            <div key={i} className={`flex border-b-[3px] border-catalyst-dark last:border-b-0 transition-colors hover:bg-catalyst-green/5 ${row.light ? 'bg-catalyst-green/10' : ''}`}>
-              {columns.map((col) => (
-                <div key={`${col.key}-${i}`} className="flex-1 px-4 py-4 text-center border-r-[3px] border-catalyst-dark last:border-r-0">
-                  <p
-                    className={`text-[20px] leading-none text-catalyst-dark ${
-                      row.light && col.key === "name" ? "font-medium" : "font-semibold"
+      <div className="flex flex-col lg:block items-center lg:absolute lg:top-[283px] lg:left-[300px] w-full lg:w-auto mt-16 lg:mt-0 px-6 lg:px-0 z-10">
+        <div className="rounded-2xl border-[3px] border-catalyst-dark bg-catalyst-light shadow-xl overflow-hidden w-full lg:w-auto">
+          <div className="bg-catalyst-dark/5 px-5 py-4 border-b-[3px] border-catalyst-dark">
+            <p className="text-center text-xl lg:text-[22px] leading-none font-bold text-catalyst-dark">
+              Month
+            </p>
+          </div>
+          <div className="p-3">
+            {months.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex items-center justify-center">
+                {row.map((month) => (
+                  <div
+                    key={month}
+                    className={`rounded-xl px-4 lg:px-5 py-3 lg:py-4 text-center text-lg lg:text-[20px] leading-none font-semibold transition-all duration-300 ${
+                      month === "JUL"
+                        ? "bg-catalyst-green text-catalyst-dark scale-110 shadow-md"
+                        : "text-catalyst-dark hover:bg-catalyst-dark/5"
                     }`}
+                    style={{ minWidth: '75px', lgMinWidth: '80px' } as any}
                   >
-                    {row[col.key]}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ))}
+                    {month}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <footer className="absolute top-[750px] left-[300px] w-[1320px] flex flex-col gap-[30px] z-10">
-        <Logo variant="header" scale={1.75} />
-        <div className="flex w-full items-end justify-between border-t border-catalyst-dark/10 pt-8">
-          <p className="whitespace-pre-line text-[28px] leading-tight font-bold text-catalyst-dark/60 tracking-tight">
+      {/* Divider */}
+      <div className="hidden lg:block absolute top-[283px] left-[773px] h-[317px] w-[5px] bg-catalyst-green shadow-[0_0_15px_rgba(30,215,96,0.3)] z-10" />
+
+      {/* Rankings Table */}
+      <div className="flex flex-col lg:block items-center lg:absolute lg:top-[283px] lg:left-[870px] w-full lg:w-[750px] mt-20 lg:mt-0 px-6 lg:px-0 z-10">
+        <div className="rounded-2xl border-[3px] border-catalyst-dark bg-catalyst-light shadow-xl overflow-x-auto w-full lg:overflow-hidden">
+          <div className="flex bg-catalyst-dark/5 border-b-[3px] border-catalyst-dark min-w-[500px] lg:min-w-0">
+            {columns.map((col) => (
+              <div key={col.header} className="flex-1 px-3 lg:px-4 py-4 text-center border-r-[3px] border-catalyst-dark last:border-r-0">
+                <p className="text-base lg:text-[22px] leading-none font-bold text-catalyst-dark">
+                  {col.header}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="min-w-[500px] lg:min-w-0">
+            {rankings.map((row, i) => (
+              <div key={i} className={`flex border-b-[3px] border-catalyst-dark last:border-b-0 transition-colors hover:bg-catalyst-green/5 ${row.light ? 'bg-catalyst-green/10' : ''}`}>
+                {columns.map((col) => (
+                  <div key={`${col.key}-${i}`} className="flex-1 px-3 lg:px-4 py-4 text-center border-r-[3px] border-catalyst-dark last:border-r-0">
+                    <p
+                      className={`text-base lg:text-[20px] leading-none text-catalyst-dark ${
+                        row.light && col.key === "name" ? "font-medium" : "font-semibold"
+                      }`}
+                    >
+                      {row[col.key]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <footer className="flex flex-col lg:block lg:absolute lg:top-[750px] lg:left-[300px] w-full lg:w-[1320px] gap-12 lg:gap-[30px] z-10 mt-28 lg:mt-0 px-6 lg:px-0 border-t border-catalyst-dark/10 lg:border-none pt-12 lg:pt-0 pb-12 lg:pb-0">
+        <div className="flex justify-center lg:justify-start">
+          <Logo variant="header" scale={1.5} />
+        </div>
+        <div className="flex flex-col lg:flex-row w-full items-center lg:items-end justify-between lg:border-t lg:border-catalyst-dark/10 lg:pt-8 gap-12">
+          <p className="whitespace-pre-line text-center lg:text-left text-2xl md:text-3xl lg:text-[28px] leading-tight font-bold text-catalyst-dark/60 tracking-tight text-pretty">
             Portal for Waste Management{"\n"}& Societal Benefits
           </p>
-          <div className="flex flex-col items-end gap-2">
-            <p className="text-right text-[26px] leading-none font-semibold text-catalyst-dark/70">
+          <div className="flex flex-col items-center lg:items-end gap-5">
+            <p className="text-center lg:text-right text-lg md:text-xl lg:text-[26px] leading-none font-semibold text-catalyst-dark/70">
               Made by students of SAL Education.
             </p>
-            <p className="text-right text-[24px] leading-none font-medium text-catalyst-dark/40 uppercase tracking-widest">
+            <p className="text-center lg:text-right text-base lg:text-xl lg:text-[24px] leading-none font-medium text-catalyst-dark/40 uppercase tracking-widest">
               Thank you
             </p>
           </div>
@@ -112,7 +120,7 @@ export function Rankings() {
       </footer>
 
       {/* Decorative Blob */}
-      <div className="absolute top-[710px] left-[710px] w-[500px] h-[500px] rounded-full bg-radial-green opacity-20 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[710px] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-[710px] w-[300px] lg:w-[500px] h-[300px] lg:h-[500px] rounded-full bg-radial-green opacity-20 blur-[80px] lg:blur-[120px] pointer-events-none" />
     </Section>
   );
 }

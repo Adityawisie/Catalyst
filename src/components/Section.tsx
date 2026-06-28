@@ -22,7 +22,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`relative h-[960px] w-[1920px] overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden lg:h-[960px] lg:w-[1920px] py-16 lg:py-0 ${className}`}
     >
       {bgVector && (
         <Image
@@ -31,15 +31,19 @@ export function Section({
           width={500}
           height={500}
           aria-hidden
-          className="pointer-events-none absolute"
+          className="pointer-events-none absolute z-0 opacity-10 lg:opacity-[var(--bg-opacity)]"
           style={{ 
             top: bgVectorTop, 
             left: bgVectorLeft, 
-            opacity: bgVectorOpacity 
+            opacity: bgVectorOpacity,
+            // @ts-ignore
+            "--bg-opacity": bgVectorOpacity
           }}
         />
       )}
-      {children}
+      <div className="relative z-10 w-full h-full px-6 lg:px-0">
+        {children}
+      </div>
     </section>
   );
 }

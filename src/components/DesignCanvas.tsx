@@ -11,16 +11,34 @@ interface DesignCanvasProps {
 
 export function DesignCanvas({ children, height }: DesignCanvasProps) {
   const [scale, setScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const updateScale = () => {
-      setScale(Math.min(1, window.innerWidth / DESIGN_WIDTH));
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+      if (mobile) {
+        setScale(1);
+      } else {
+        setScale(Math.min(1, window.innerWidth / DESIGN_WIDTH));
+      }
     };
 
     updateScale();
     window.addEventListener("resize", updateScale);
     return () => window.removeEventListener("resize", updateScale);
   }, []);
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return <div className="w-full overflow-x-hidden opacity-0">{children}</div>;
+  }
+
+  if (isMobile) {
+    return <div className="w-full overflow-x-hidden bg-catalyst-dark">{children}</div>;
+  }
 
   const scaledHeight = height * scale;
 
