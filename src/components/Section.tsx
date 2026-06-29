@@ -4,8 +4,6 @@ interface SectionProps {
   children: React.ReactNode;
   className?: string;
   bgVector?: string;
-  bgVectorTop?: number;
-  bgVectorLeft?: number;
   bgVectorOpacity?: number;
   id?: string;
 }
@@ -14,34 +12,28 @@ export function Section({
   children,
   className = "",
   bgVector,
-  bgVectorTop = 710,
-  bgVectorLeft = 710,
   bgVectorOpacity = 0.1,
   id,
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={`relative w-full overflow-hidden lg:h-[960px] lg:w-[1920px] py-16 lg:py-0 ${className}`}
+      className={`relative isolate w-full overflow-hidden py-20 sm:py-24 lg:py-32 ${className}`}
     >
       {bgVector && (
         <Image
           src={bgVector}
           alt=""
-          width={500}
-          height={500}
+          width={640}
+          height={640}
           aria-hidden
-          className="pointer-events-none absolute z-0 opacity-10 lg:opacity-[var(--bg-opacity)]"
-          style={{ 
-            top: bgVectorTop, 
-            left: bgVectorLeft, 
+          className="pointer-events-none absolute bottom-[-12rem] left-1/2 z-0 h-auto w-[32rem] max-w-none -translate-x-1/2 lg:w-[40rem]"
+          style={{
             opacity: bgVectorOpacity,
-            // @ts-ignore
-            "--bg-opacity": bgVectorOpacity
           }}
         />
       )}
-      <div className="relative z-10 w-full h-full px-6 lg:px-0">
+      <div className="section-container relative z-10">
         {children}
       </div>
     </section>

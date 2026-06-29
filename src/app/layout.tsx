@@ -43,6 +43,17 @@ const proxzFont = localFont({
   variable: "--font-proxz",
 });
 
+const proxzExtraBoldFont = localFont({
+  src: [
+    {
+      path: "../../Font/ProxzFont_ExtraBold.otf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-proxz-extrabold",
+});
+
 export const metadata: Metadata = {
   title: "CATALYST — Portal for Waste Management & Societal Benefits",
   description:
@@ -56,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${proxzFont.variable} font-sans antialiased`}>
+      <body className={`${proxzFont.variable} ${proxzExtraBoldFont.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
